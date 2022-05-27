@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="UIEndGame" src="project://database/Assets/UIToolkit/UIEndGame/UIEndGame.uxml?fileID=9197481963319205126&amp;guid=e5e59ac134717004cbbd4114640d6e9d&amp;type=3#UIEndGame" />
+    <ui:Template name="UIGame" src="project://database/Assets/UIToolkit/UIGame/UIGame.uxml?fileID=9197481963319205126&amp;guid=c2463673770774e4d8fcb51b358c86bf&amp;type=3#UIGame" />
+    <ui:Template name="UIOption" src="project://database/Assets/UIToolkit/UIOption/UIOption.uxml?fileID=9197481963319205126&amp;guid=cd5bf3707000ba842b689a4c7c83d198&amp;type=3#UIOption" />
+    <ui:Template name="UIPause" src="project://database/Assets/UIToolkit/UIPause/UIPause.uxml?fileID=9197481963319205126&amp;guid=ec0dc81f41514c544a93d5d24952f799&amp;type=3#UIPause" />
+    <UIGameManager style="width: 100%; height: 100%;">
+        <ui:Instance template="UIEndGame" name="UIEndGame" style="width: 100%; height: 100%;" />
+        <ui:Instance template="UIGame" name="UIGame" tabindex="1" style="width: 100%; height: 100%;" />
+        <ui:Instance template="UIOption" name="UIOption" tabindex="2" style="width: 100%; height: 100%;" />
+        <ui:Instance template="UIPause" name="UIPause" tabindex="3" style="width: 100%; height: 100%;" />
+    </UIGameManager>
+</ui:UXML>

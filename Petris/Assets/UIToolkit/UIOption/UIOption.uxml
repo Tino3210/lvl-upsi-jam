@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="screen" style="flex-direction: row; width: 100%; height: 100%;">
+        <ui:VisualElement name="left" style="width: 25%;" />
+        <ui:VisualElement name="center" style="width: 50%; align-items: center;">
+            <ui:Label text="Volume" display-tooltip-when-elided="true" name="Volume" style="width: auto; font-size: 24px;" />
+            <ui:SliderInt picking-mode="Ignore" label="Main volume" value="42" high-value="100" name="mainVolum" style="cursor: initial; margin-left: 3px; width: 100%;" />
+            <ui:SliderInt picking-mode="Ignore" label="Sound effect" value="42" high-value="100" name="soundEffect" style="margin-left: 3px; width: 100%;" />
+            <ui:Button text="back" display-tooltip-when-elided="true" name="back" style="position: absolute; bottom: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="right" value="100" label="Volume Principale" style="width: 25%;" />
+    </ui:VisualElement>
+</ui:UXML>

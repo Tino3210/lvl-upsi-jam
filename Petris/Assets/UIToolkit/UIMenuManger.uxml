@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="UIMainMenu" src="project://database/Assets/UIToolkit/UIMainMenu/UIMainMenu.uxml?fileID=9197481963319205126&amp;guid=47c2af9397c492d43aa104c080600697&amp;type=3#UIMainMenu" />
+    <ui:Template name="UIOption" src="project://database/Assets/UIToolkit/UIOption/UIOption.uxml?fileID=9197481963319205126&amp;guid=cd5bf3707000ba842b689a4c7c83d198&amp;type=3#UIOption" />
+    <UIInterfaceManager style="width: 100%; height: 100%;">
+        <ui:Instance template="UIMainMenu" name="UIMainMenu" style="width: 100%; height: 100%; position: absolute;" />
+        <ui:Instance template="UIOption" name="UIOption" tabindex="1" style="width: 100%; height: 100%; position: absolute;" />
+    </UIInterfaceManager>
+</ui:UXML>

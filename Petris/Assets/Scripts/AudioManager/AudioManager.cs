@@ -6,7 +6,10 @@ public class AudioManager : MonoBehaviour
 {
     public AudioClip start;
     public AudioClip petris;
+    public AudioClip breakPieces;
+    [Range(0, 1)]
     public float volumeMain;
+    [Range(0, 1)]
     public float volumeInterface;
 
     public static AudioManager Instance;
@@ -29,10 +32,6 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        start = Resources.Load<AudioClip>("Audio/voice_slow_start");
-        petris = Resources.Load<AudioClip>("Audio/voice_slow_petris");
-        volumeMain = 1f;
-        volumeInterface = 1f;
     }
 
     void Update()
@@ -49,5 +48,10 @@ public class AudioManager : MonoBehaviour
     public void PlayPetris()
     {
         AudioSource.PlayClipAtPoint(petris, Camera.main.transform.position, volumeInterface * volumeMain);
+    }
+
+    public void PlayBreakPieces()
+    {
+        AudioSource.PlayClipAtPoint(breakPieces, Camera.main.transform.position, volumeMain);
     }
 }

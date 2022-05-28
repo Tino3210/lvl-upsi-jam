@@ -21,11 +21,40 @@ public class UIGameManager : VisualElement
 
     void OnGeometryChange(GeometryChangedEvent evt)
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.Paused += ShowResumeScreen;
+            GameManager.Instance.Ended += ShowScoreScreen;
+            GameManager.Instance.Gaming += ShowGameScreen;
+        }
+
         optionScreen = this.Q("UIOption");
         scoreScreen = this.Q("UIEndGame");
         gameScreen = this.Q("UIGame");
         resumeScreen = this.Q("UIPause");
 
+
+        resumeScreen?.Q("resume").RegisterCallback<ClickEvent>(evt => ShowOptionScreen());
+        resumeScreen?.Q("option").RegisterCallback<ClickEvent>(evt => ShowOptionScreen());
+        resumeScreen?.Q("quitToMenu").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Menu));
+        resumeScreen?.Q("quitToDesktop").RegisterCallback<ClickEvent>(evt => Application.Quit());
+
+        optionScreen?.Q("back")?.RegisterCallback<ClickEvent>(ev => ShowResumeScreen());
+
+        ShowGameScreen();
+    }
+
+    public void ShowResumeScreen(object sender, EventArgs evt)
+    {
+        ShowResumeScreen();
+    }
+
+    public void ShowScoreScreen(object sender, EventArgs evt)
+    {
+        ShowScoreScreen();
+    }
+    public void ShowGameScreen(object sender, EventArgs evt)
+    {
         ShowGameScreen();
     }
 

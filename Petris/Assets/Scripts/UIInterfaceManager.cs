@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,10 +14,13 @@ public class UIInterfaceManager : VisualElement
     SliderInt sliderMainVolume;
     SliderInt sliderInteface;
 
+    private bool alreadyStart;
+
     public new class UxmlFactory : UxmlFactory<UIInterfaceManager, UxmlTraits> { }
 
     public UIInterfaceManager()
     {
+        alreadyStart = false;
         this.RegisterCallback<GeometryChangedEvent>(OnGeometryChange);
     }
 
@@ -42,7 +46,7 @@ public class UIInterfaceManager : VisualElement
             sliderInteface.value = (int)(AudioManager.Instance.volumeInterface * 100);
         }
 
-            mainScreen?.Q("start")?.RegisterCallback<ClickEvent>(ev => StartGame());
+        mainScreen?.Q("start")?.RegisterCallback<ClickEvent>(ev => StartGame());
         mainScreen?.Q("title")?.RegisterCallback<ClickEvent>(ev => AudioManager.Instance.PlayPetris());
         
         mainScreen?.Q("option")?.RegisterCallback<ClickEvent>(ev => ShowOptionScreen());
@@ -59,11 +63,23 @@ public class UIInterfaceManager : VisualElement
         AudioManager.Instance.volumeInterface = evt.newValue / 100f;
     }
 
+    public IEnumerator DoSomething()
+    {
+        yield return new WaitForSeconds(5);
+        Debug.Log("Done");
+    }
+
     public void StartGame()
     {
         //Play start sound
-        AudioManager.Instance.PlayStart();
-        // GameManager.changeStats
+
+        if (!alreadyStart)
+        {
+            alreadyStart = true;
+            AudioManager.Instance.PlayStart();
+
+            GameManager.Instance.StartGame();
+        }
     }
 
     public void ShowOptionScreen()

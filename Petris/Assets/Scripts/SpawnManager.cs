@@ -27,9 +27,9 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         
-    }
+    }    
 
-    public void SpawnPetronimo() {
+    public void SpawnPetronimo() {        
         GameObject petromino = new GameObject();
         petromino.name = "Petromino";        
         petromino.transform.SetParent(gameObject.transform);

@@ -19,6 +19,7 @@ public class PetrominoManager : MonoBehaviour
 
     private float distanceTraveled = 0.0f;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,37 +51,91 @@ public class PetrominoManager : MonoBehaviour
 
             walkPiece = 0;
 
+            bool isMovableLeft = true;
+            bool isMovableRight = true;
+
+            for(int i = 0; i < transform.childCount; i++){
+                
+
+                isMovableLeft &= transform.GetChild(i).transform.GetChild(0).transform.GetComponent<CheckNeighbour>().isMovableLeft;
+                isMovableRight &= transform.GetChild(i).transform.GetChild(1).transform.GetComponent<CheckNeighbour>().isMovableRight;
+                
+            }
+
+            
             if (distanceTraveled > 1)
             {
                 distanceTraveled = 0f;
                 walkPiece = 1;
+                for(int i = 0; i < transform.childCount; i++){
+                    transform.GetChild(i).transform.GetChild(0).transform.GetComponent<CheckNeighbour>().isMovableLeft = true;
+                    transform.GetChild(i).transform.GetChild(1).transform.GetComponent<CheckNeighbour>().isMovableRight = true;
+                }
             }
 
 
-            float dashH = Input.GetKeyDown(KeyCode.D) ? 1 : 0;
-            dashH += Input.GetKeyDown(KeyCode.A) ? -1 : 0;
+            float dashH = 0;
+            // dashH += Input.GetKeyDown(KeyCode.D)&&isMovableRight ? 1 : 0;
+            // dashH += Input.GetKeyDown(KeyCode.A)&&isMovableLeft ? -1 : 0;
 
 
-            float dashV = Input.GetKeyDown(KeyCode.W) ? 1 : 0;
-            dashV += Input.GetKeyDown(KeyCode.S) ? -1 : 0;          
+            float dashV = 0;
+            // dashV += Input.GetKeyDown(KeyCode.W)&&isMovableUp ? 1 : 0;
+            // dashV += Input.GetKeyDown(KeyCode.S)&&isMovableDown ? -1 : 0;
+
+
+
+
+
+
+
 
             switch (direction)
             {
                 case Direction.North:
 
+                    dashH += Input.GetKeyDown(KeyCode.D)&&isMovableRight ? 1 : 0;
+                    dashH += Input.GetKeyDown(KeyCode.A)&&isMovableLeft ? -1 : 0;
 
                     transform.position = new Vector2(transform.position.x + dashH, transform.position.y + walkPiece);
                 break;
                 case Direction.East:
+
+                    dashV += Input.GetKeyDown(KeyCode.W)&&isMovableLeft ? 1 : 0;
+                    dashV += Input.GetKeyDown(KeyCode.S)&&isMovableRight ? -1 : 0;
+
                     transform.position = new Vector2(transform.position.x + walkPiece, transform.position.y + dashV);
                 break;
                 case Direction.South:
+
+                    dashH += Input.GetKeyDown(KeyCode.D)&&isMovableLeft ? 1 : 0;
+                    dashH += Input.GetKeyDown(KeyCode.A)&&isMovableRight ? -1 : 0;
+
                     transform.position = new Vector2(transform.position.x + dashH, transform.position.y - walkPiece);
                 break;
                 case Direction.West:
+
+                    dashV += Input.GetKeyDown(KeyCode.W)&&isMovableRight ? 1 : 0;
+                    dashV += Input.GetKeyDown(KeyCode.S)&&isMovableLeft ? -1 : 0;
+
                     transform.position = new Vector2(transform.position.x - walkPiece, transform.position.y + dashV);
                 break;            
             }
+
+
+
+
+            if(transform.position.x > 23 || transform.position.x < -23 || transform.position.y > 23 || transform.position.y < -23){
+                Debug.Log("-1 PV");
+                Destroy(gameObject);
+                StartCoroutine(Spawn());
+            }            
         }
-    }    
+    }
+
+    public IEnumerator Spawn(){
+        GameObject.Find("Main Camera").GetComponent<CameraManager>().RotateCamera();
+        yield return new WaitForSeconds(1.5f);                
+        GameObject.Find("SpawnManager").GetComponent<SpawnManager>().SpawnPetronimo();
+    }
 }

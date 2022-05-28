@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlateformManager : MonoBehaviour
 {
     [SerializeField]
-    private int sizeArray = 20;
+    private int sizeArray = 30;
     private Dictionary<Vector2, GameObject> pieces;
+    public int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,8 +21,7 @@ public class PlateformManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
     }
 
     public void AddPetromino(GameObject petromino){
@@ -40,24 +40,24 @@ public class PlateformManager : MonoBehaviour
 
         Vector2 roundedPos = new Vector2(Mathf.Round(piece.transform.position.x*2)/2, Mathf.Round(piece.transform.position.y*2)/2);
         piece.GetComponent<PieceManager>().ResetCollider();
-        pieces.Add(roundedPos, piece); // C'est ici qu'on a des erreurs quand on a des pièces qui sont en overlap
+        pieces.Add(roundedPos, piece); // C'est ici qu'on a des erreurs quand on a des piï¿½ces qui sont en overlap
     }
     
     // Fonction pour ajouter les poinnts ?
-    // Pas safe, car on check pas si la pièce existent dans le dictionnaire (pour éviter de la redondance dans le code)
+    // Pas safe, car on check pas si la piï¿½ce existent dans le dictionnaire (pour ï¿½viter de la redondance dans le code)
     private void UnsafeBreakPiece(Vector2 piecePosition)
     {
         Destroy(pieces[piecePosition]);
         pieces.Remove(piecePosition);
+        score += 1;
     }
 
-    // Retire une pièce si elle existe
+    // Retire une piï¿½ce si elle existe
     private void SafeBreakPiece(Vector2 piecePosition)
     {
         if (pieces.ContainsKey(piecePosition))
         {
-            Destroy(pieces[piecePosition]);
-            pieces.Remove(piecePosition);
+            UnsafeBreakPiece(piecePosition);
         }
     }
 
@@ -88,9 +88,9 @@ public class PlateformManager : MonoBehaviour
         int maxLayer = sizeArray / 2;
         float halfPiece = 0.5f;
 
-        // Du centre vers l'extérieur
-        // Retirer les pièces dans les coins des couches supérieures
-        // Et décaller vers les pièces vers le bas
+        // Du centre vers l'extï¿½rieur
+        // Retirer les piï¿½ces dans les coins des couches supï¿½rieures
+        // Et dï¿½caller vers les piï¿½ces vers le bas
         for (int layer = brokenLayer + 1; layer <= maxLayer; layer++)
         {
             float layerIndex = layer - halfPiece;
@@ -171,10 +171,10 @@ public class PlateformManager : MonoBehaviour
                     UnsafeBreakPiece(new Vector2(layerIndex - j, -layerIndex));
                     UnsafeBreakPiece(new Vector2(-layerIndex + j, layerIndex));
                     UnsafeBreakPiece(new Vector2(-layerIndex, -layerIndex + j));
-                }
+                }            
                 LayerBreaker(layer);
                 layer = maxLayer; // Recheck until we no more perfect squares left
             }         
         }
-    }
+    }    
 }

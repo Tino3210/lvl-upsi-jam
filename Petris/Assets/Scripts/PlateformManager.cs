@@ -40,8 +40,90 @@ public class PlateformManager : MonoBehaviour
 
         Vector2 roundedPos = new Vector2(Mathf.Round(piece.transform.position.x*2)/2, Mathf.Round(piece.transform.position.y*2)/2);
         piece.GetComponent<PieceManager>().ResetCollider();
-        pieces.Add(roundedPos, piece);
+        pieces.Add(roundedPos, piece); // C'est ici qu'on a des erreurs quand on a des pièces qui sont en overlap
     }
+    
+    // Fonction pour ajouter les poinnts ?
+    // Pas safe, car on check pas si la pièce existent dans le dictionnaire (pour éviter de la redondance dans le code)
+    private void UnsafeBreakPiece(Vector2 piecePosition)
+    {
+        Destroy(pieces[piecePosition]);
+        pieces.Remove(piecePosition);
+    }
+
+    // Retire une pièce si elle existe
+    private void SafeBreakPiece(Vector2 piecePosition)
+    {
+        if (pieces.ContainsKey(piecePosition))
+        {
+            Destroy(pieces[piecePosition]);
+            pieces.Remove(piecePosition);
+        }
+    }
+
+    private void MovePiece(Vector2 oldPos, Vector2 newPos)
+    {
+
+        if (pieces.ContainsKey(oldPos))
+        {
+            //Destroy(pieces[oldPos]);
+            GameObject piece = pieces[oldPos];
+
+            pieces.Remove(oldPos);
+
+            if (pieces.ContainsKey(newPos))
+            {
+                Destroy(pieces[newPos]);
+                pieces.Remove(newPos);
+            }
+            piece.transform.position = newPos;
+            pieces.Add(newPos, piece);
+
+        }
+    }
+
+
+    private void LayerBreaker(int brokenLayer)
+    {
+        int maxLayer = sizeArray / 2;
+        float halfPiece = 0.5f;
+
+        // Du centre vers l'extérieur
+        // Retirer les pièces dans les coins des couches supérieures
+        // Et décaller vers les pièces vers le bas
+        for (int layer = brokenLayer + 1; layer <= maxLayer; layer++)
+        {
+            float layerIndex = layer - halfPiece;
+
+            for (int j = 0; j < 2 * layer - 1; j++)
+            {
+                if (j == 0)
+                {
+                    SafeBreakPiece(new Vector2(layerIndex, layerIndex));
+                    SafeBreakPiece(new Vector2(layerIndex, -layerIndex));
+                    SafeBreakPiece(new Vector2(-layerIndex, layerIndex));
+                    SafeBreakPiece(new Vector2(-layerIndex, -layerIndex));
+                }
+                else
+                {
+                    MovePiece(new Vector2(layerIndex, layerIndex - j), new Vector2(layerIndex - 1, layerIndex - j));
+                    MovePiece(new Vector2(layerIndex - j, -layerIndex), new Vector2(layerIndex - j, -layerIndex+1));
+                    MovePiece(new Vector2(-layerIndex + j, layerIndex), new Vector2(-layerIndex + j, layerIndex-1));
+                    MovePiece(new Vector2(-layerIndex, -layerIndex + j), new Vector2(-layerIndex+1, -layerIndex + j));
+
+                    /*
+                    SafeBreakPiece(new Vector2(layerIndex, layerIndex - j));
+                    SafeBreakPiece(new Vector2(layerIndex - j, -layerIndex));
+                    SafeBreakPiece(new Vector2(-layerIndex + j, layerIndex));
+                    SafeBreakPiece(new Vector2(-layerIndex, -layerIndex + j));
+                    */
+                    
+                }
+            }
+        }
+
+    }
+
 
     private void CheckPerfectSquare(){
         int maxLayer = sizeArray/2;
@@ -51,6 +133,7 @@ public class PlateformManager : MonoBehaviour
 
             for(int j = 0; j < 2*layer-1; j++){                
                 float layerIndex = layer-halfPiece;
+
                 if(!pieces.ContainsKey(new Vector2(layerIndex, layerIndex-j))){
                     isPetris = false;
                     break;
@@ -73,19 +156,24 @@ public class PlateformManager : MonoBehaviour
                 for(int j = 0; j < 2*layer-1; j++){                
                     float layerIndex = layer-halfPiece;
 
-                    Destroy(pieces[new Vector2(layerIndex, layerIndex-j)]);
-                    Destroy(pieces[new Vector2(layerIndex-j, -layerIndex)]);
-                    Destroy(pieces[new Vector2(-layerIndex+j, layerIndex)]);
-                    Destroy(pieces[new Vector2(-layerIndex, -layerIndex+j)]);
+                    //Destroy(pieces[new Vector2(layerIndex, layerIndex-j)]);
+                    //Destroy(pieces[new Vector2(layerIndex-j, -layerIndex)]);
+                    //Destroy(pieces[new Vector2(-layerIndex+j, layerIndex)]);
+                    //Destroy(pieces[new Vector2(-layerIndex, -layerIndex+j)]);
 
-                    pieces.Remove(new Vector2(layerIndex, layerIndex-j));
-                    pieces.Remove(new Vector2(layerIndex-j, -layerIndex));
-                    pieces.Remove(new Vector2(-layerIndex+j, layerIndex));
-                    pieces.Remove(new Vector2(-layerIndex, -layerIndex+j));
+                    //pieces.Remove(new Vector2(layerIndex, layerIndex-j));
+                    //pieces.Remove(new Vector2(layerIndex-j, -layerIndex));
+                    //pieces.Remove(new Vector2(-layerIndex+j, layerIndex));
+                    //pieces.Remove(new Vector2(-layerIndex, -layerIndex+j));
 
-
-                  
+                    // Removing pieces from full layer
+                    UnsafeBreakPiece(new Vector2(layerIndex, layerIndex - j));
+                    UnsafeBreakPiece(new Vector2(layerIndex - j, -layerIndex));
+                    UnsafeBreakPiece(new Vector2(-layerIndex + j, layerIndex));
+                    UnsafeBreakPiece(new Vector2(-layerIndex, -layerIndex + j));
                 }
+                LayerBreaker(layer);
+                layer = maxLayer; // Recheck until we no more perfect squares left
             }         
         }
     }

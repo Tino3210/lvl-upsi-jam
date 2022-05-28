@@ -3,6 +3,7 @@
     <ui:VisualElement name="screen" style="flex-direction: row; width: 100%; height: 100%;">
         <ui:VisualElement name="left" style="width: 25%;" />
         <ui:VisualElement name="center" style="width: 50%;">
+            <ui:Button text="RESUME" display-tooltip-when-elided="true" name="resume" class="PS2P" />
             <ui:Button text="OPTION" display-tooltip-when-elided="true" name="option" class="PS2P" style="height: 36px;" />
             <ui:Button text="QUIT TO MENU" display-tooltip-when-elided="true" name="quitToMenu" class="PS2P" style="height: 34px;" />
             <ui:Button text="QUIT TO DESKTOP" display-tooltip-when-elided="true" name="quitToDesktop" enable-rich-text="false" class="PS2P" />

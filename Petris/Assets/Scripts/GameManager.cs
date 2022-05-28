@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             {
                 UpdateGameState(GameState.Pause);
             }
-            else if (GameManager.Instance.State == GameState.Game)
+            else if (GameManager.Instance.State == GameState.Pause)
             {
                 UpdateGameState(GameState.Game);
             }
@@ -62,10 +62,10 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.Menu:
-                SceneManager.LoadScene("LoicScene");
+                SceneManager.LoadScene("InterfaceScene");
                 break;
             case GameState.LaunchGame:
-                SceneManager.LoadScene("LucScene");
+                SceneManager.LoadScene("MasterScene");
                 UpdateGameState(GameState.Game);
                 break;
             case GameState.Game:

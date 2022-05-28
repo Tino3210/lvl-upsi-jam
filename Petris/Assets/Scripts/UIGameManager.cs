@@ -12,10 +12,19 @@ public class UIGameManager : VisualElement
     VisualElement gameScreen;
     VisualElement resumeScreen;
 
+    Label time;
+    Label scoreInGame;
+    Label scoreEnd;
+
+
+    IMGUIContainer[] hearts;
+    Sprite emptyHeart;
+
     public new class UxmlFactory : UxmlFactory<UIGameManager, UxmlTraits> { }
 
     public UIGameManager()
     {
+        hearts = new IMGUIContainer[3];
         this.RegisterCallback<GeometryChangedEvent>(OnGeometryChange);
     }
 
@@ -26,6 +35,10 @@ public class UIGameManager : VisualElement
             GameManager.Instance.Paused += ShowResumeScreen;
             GameManager.Instance.Ended += ShowScoreScreen;
             GameManager.Instance.Gaming += ShowGameScreen;
+
+            ScoreManager.Instance.TimeChanged += UpdatedTime;
+            ScoreManager.Instance.ScoreChanged += UpdatedScore;
+            ScoreManager.Instance.LifeChanged += UpdateLife;
         }
 
         optionScreen = this.Q("UIOption");
@@ -33,16 +46,45 @@ public class UIGameManager : VisualElement
         gameScreen = this.Q("UIGame");
         resumeScreen = this.Q("UIPause");
 
+        time = gameScreen?.Q("time") as Label;
+        scoreInGame = gameScreen?.Q("score") as Label;
+        scoreEnd = scoreScreen.Q("score") as Label;
 
-        resumeScreen?.Q("resume").RegisterCallback<ClickEvent>(evt => ShowOptionScreen());
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i] = gameScreen?.Q("heart" + i) as IMGUIContainer;
+        }
+
+        emptyHeart = Resources.Load<Sprite>("Assets/Resources/Sprites/sprite_heart_1.png");
+
+        resumeScreen?.Q("resume").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Game));
         resumeScreen?.Q("option").RegisterCallback<ClickEvent>(evt => ShowOptionScreen());
         resumeScreen?.Q("quitToMenu").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Menu));
         resumeScreen?.Q("quitToDesktop").RegisterCallback<ClickEvent>(evt => Application.Quit());
+
+        scoreScreen?.Q("menu").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Menu));
 
         optionScreen?.Q("back")?.RegisterCallback<ClickEvent>(ev => ShowResumeScreen());
 
         ShowGameScreen();
     }
+
+    public void UpdatedTime(object sender, EventArgs evt)
+    {
+        time.text = ScoreManager.Instance.TimeText;
+    }
+
+    public void UpdatedScore(object sender, EventArgs evt)
+    {
+        scoreInGame.text = "Score : " + ScoreManager.Instance.Score;
+        scoreEnd.text = ScoreManager.Instance.Score + " points";
+
+    }
+    public void UpdateLife(object sender, EventArgs evt)
+    {
+        Debug.Log(emptyHeart);
+        hearts[ScoreManager.Instance.Life].style.backgroundImage = new StyleBackground(ScoreManager.Instance.emptyHeart);
+    }    
 
     public void ShowResumeScreen(object sender, EventArgs evt)
     {

@@ -103,8 +103,9 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject newPiece = Instantiate(piece);
             newPiece.tag = "piece";
+            newPiece.GetComponent<PieceManager>().RotateCollider(direction);
             newPiece.GetComponent<SpriteRenderer>().sprite = sprites[spriteNumber];                            
-            newPiece.transform.SetParent(petronimo.transform);
+            newPiece.transform.SetParent(petronimo.transform);        
             newPiece.transform.localPosition = new Vector2(pos.x,pos.y);
         }               
     }

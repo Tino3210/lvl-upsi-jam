@@ -38,9 +38,8 @@ public class PlateformManager : MonoBehaviour
 
     private void AddPiece(GameObject piece){
 
-        // FIXME : Marche probablement pas
         Vector2 roundedPos = new Vector2(Mathf.Round(piece.transform.position.x*2)/2, Mathf.Round(piece.transform.position.y*2)/2);
-
+        piece.GetComponent<PieceManager>().ResetCollider();
         pieces.Add(roundedPos, piece);
     }
 

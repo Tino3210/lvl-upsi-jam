@@ -153,7 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &813260438
 MonoBehaviour:
@@ -168,10 +168,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piece: {fileID: 915562464004555402, guid: d74e1c3c69901ee459a2b4afba607d76, type: 3}
-  spawnNorth: {x: -0.5, y: 11}
-  spawnEast: {x: 11, y: 0.5}
-  spawnSouth: {x: -0.5, y: -11}
-  spawnWest: {x: -11, y: 0.5}
+  spawnNorth: {x: -0.5, y: 11.5}
+  spawnEast: {x: 11.5, y: 0.5}
+  spawnSouth: {x: -0.5, y: -11.5}
+  spawnWest: {x: -11.5, y: 0.5}
   sprites:
   - {fileID: -2080368484, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
   - {fileID: 898481381, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
@@ -367,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5114577160856906777, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5114577160856906777, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}
       propertyPath: m_LocalPosition.x

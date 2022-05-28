@@ -20,8 +20,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Start");
-        SpawnPetronimo();
+        SpawnPetronimo();       
     }
 
     // Update is called once per frame
@@ -30,67 +29,69 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    private void SpawnPetronimo() {
+    public void SpawnPetronimo() {
         GameObject petromino = new GameObject();
-        petromino.name = "Petromino";
+        petromino.name = "Petromino";        
         petromino.transform.SetParent(gameObject.transform);
-        GameObject newPetromino = Instantiate(petromino);
         PetrominoManager.Direction direction;
 
-        switch(Random.Range(0, 3)){
+        switch(Random.Range(0, 4)){
             case 0:
-                newPetromino.transform.position = spawnNorth;
+                petromino.transform.position = spawnNorth;
                 direction = PetrominoManager.Direction.South;
             break;            
             case 1:
-                newPetromino.transform.position = spawnEast;
+                petromino.transform.position = spawnEast;
                 direction = PetrominoManager.Direction.West;
             break;
             case 2:
-                newPetromino.transform.position = spawnSouth;
+                petromino.transform.position = spawnSouth;
                 direction = PetrominoManager.Direction.North;
             break;
             case 3:
-                newPetromino.transform.position = spawnWest;
+                petromino.transform.position = spawnWest;
                 direction = PetrominoManager.Direction.East;
             break;
             default:
-                newPetromino.transform.position = spawnNorth;
+                petromino.transform.position = spawnNorth;
                 direction = PetrominoManager.Direction.South;
             break;
         }
+
+        petromino.AddComponent<PetrominoManager>();
+        petromino.GetComponent<PetrominoManager>().direction = direction;        
         
-        switch(Random.Range(0, 6)){
+        switch(Random.Range(0, 7)){
             case 0:
                 //I                
-                Petromino(newPetromino, new []{new Vector2(0f, 0f), new Vector2(-1f, 0f), new Vector2(1f, 0f), new Vector2(2f, 0f)}, direction);
+                Petromino(petromino, new []{new Vector2(0f, 0f), new Vector2(-1f, 0f), new Vector2(1f, 0f), new Vector2(2f, 0f)}, direction);
             break;            
             case 1:
                 //O                
-                Petromino(newPetromino, new []{new Vector2(.0f, 0f), new Vector2(1f, 0f), new Vector2(.0f, -1f), new Vector2(1, -1f)}, direction);
+                Petromino(petromino, new []{new Vector2(.0f, 0f), new Vector2(1f, 0f), new Vector2(.0f, -1f), new Vector2(1, -1f)}, direction);
             break;
             case 2:
                 //T                
-                Petromino(newPetromino, new []{new Vector2(.0f, .0f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f)}, direction);
+                Petromino(petromino, new []{new Vector2(.0f, .0f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f)}, direction);
             break;
             case 3:
                 //L                
-                Petromino(newPetromino, new []{new Vector2(.0f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f), new Vector2(2f, 0f)}, direction);
+                Petromino(petromino, new []{new Vector2(.0f, 0f), new Vector2(0f, -1f), new Vector2(1f, 0f), new Vector2(2f, 0f)}, direction);
             break;
             case 4:
                 //J                
-                Petromino(newPetromino, new []{new Vector2(.0f, 0f), new Vector2(-1f, 0f), new Vector2(1f, 0f), new Vector2(1f, -1f)}, direction);
+                Petromino(petromino, new []{new Vector2(.0f, 0f), new Vector2(-1f, 0f), new Vector2(1f, 0f), new Vector2(1f, -1f)}, direction);
             break;
             case 5:
                 //Z                
-                Petromino(newPetromino, new []{new Vector2(.0f, 0f), new Vector2(-1f, 0f), new Vector2(-1f, 0f), new Vector2(1f, -1f)}, direction);
+                Petromino(petromino, new []{new Vector2(.0f, 0f), new Vector2(-1f, 0f), new Vector2(0f, -1f), new Vector2(1f, -1f)}, direction);
             break;
             case 6:
                 //S                
-                Petromino(newPetromino, new []{new Vector2(.0f, 0f), new Vector2(1f, 0f), new Vector2(0f, -1f), new Vector2(-1f, -1f)}, direction);
+                Petromino(petromino, new []{new Vector2(.0f, 0f), new Vector2(1f, 0f), new Vector2(0f, -1f), new Vector2(-1f, -1f)}, direction);
             break;
             default:
-                Petromino(newPetromino, new []{new Vector2(0f, 0f), new Vector2(-1f, 0f), new Vector2(1f, 0f), new Vector2(2f, 0f)}, direction);
+                Petromino(petromino, new []{new Vector2(0f, 0f), new Vector2(-1f, 0f), new Vector2(1f, 0f), new Vector2(2f, 0f)}, direction);
             break;
         }     
     }
@@ -100,12 +101,10 @@ public class SpawnManager : MonoBehaviour
         
         foreach (Vector2 pos in positions)
         {
-            GameObject newPiece = Instantiate(piece);  
-            newPiece.GetComponent<SpriteRenderer>().sprite = sprites[spriteNumber];    
-            newPiece.AddComponent<PetrominoManager>();
-            newPiece.GetComponent<PetrominoManager>().direction = direction;
+            GameObject newPiece = Instantiate(piece);
+            newPiece.tag = "piece";
+            newPiece.GetComponent<SpriteRenderer>().sprite = sprites[spriteNumber];                            
             newPiece.transform.SetParent(petronimo.transform);
-            newPiece.GetComponent<PetrominoManager>().direction = direction;
             newPiece.transform.localPosition = new Vector2(pos.x,pos.y);
         }               
     }

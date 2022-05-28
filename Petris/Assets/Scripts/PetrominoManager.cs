@@ -12,7 +12,9 @@ public class PetrominoManager : MonoBehaviour
     }
 
     public Direction direction;
-    public float moveSpeed = 1f;
+    public float moveSpeed = 5f;
+    public bool isMoving = true;
+    public bool isTrigger = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,20 +24,22 @@ public class PetrominoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (direction)
-        {
-            case Direction.North:
-                transform.position = new Vector2(transform.position.x, transform.position.y + (moveSpeed  * Time.deltaTime));
-            break;
-            case Direction.East:
-                transform.position = new Vector2(transform.position.x + (moveSpeed  * Time.deltaTime), transform.position.y);
-            break;
-            case Direction.South:
-                transform.position = new Vector2(transform.position.x, transform.position.y - (moveSpeed  * Time.deltaTime));
-            break;
-            case Direction.West:
-                transform.position = new Vector2(transform.position.x - (moveSpeed  * Time.deltaTime), transform.position.y);
-            break;            
+        if(isMoving){
+            switch (direction)
+            {
+                case Direction.North:
+                    transform.position = new Vector2(transform.position.x, transform.position.y + (moveSpeed  * Time.deltaTime));
+                break;
+                case Direction.East:
+                    transform.position = new Vector2(transform.position.x + (moveSpeed  * Time.deltaTime), transform.position.y);
+                break;
+                case Direction.South:
+                    transform.position = new Vector2(transform.position.x, transform.position.y - (moveSpeed  * Time.deltaTime));
+                break;
+                case Direction.West:
+                    transform.position = new Vector2(transform.position.x - (moveSpeed  * Time.deltaTime), transform.position.y);
+                break;            
+            }
         }
-    }
+    }    
 }

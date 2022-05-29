@@ -162,6 +162,7 @@ public class PlateformManager : MonoBehaviour
             }
 
             if(isPetris){
+                GameObject.Find("Main Camera").GetComponent<CameraShake>().Shake(1);
                 for(int j = 0; j < 2*layer-1; j++){                
                     float layerIndex = layer-halfPiece;
 

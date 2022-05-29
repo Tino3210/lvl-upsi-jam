@@ -1,14 +1,28 @@
 .button {
-    width: 30%;
+    width: 35%;
     -unity-font: url('project://database/Assets/Sprites/PressStart2P-Regular.ttf?fileID=12800000&guid=60b71b71015510647b691043e6ec9cc9&type=3#PressStart2P-Regular');
     -unity-font-definition: url('project://database/Assets/Sprites/PressStart2P-Regular%20SDF.asset?fileID=11400000&guid=eba36e1c2d08df942b4ce70fb72d9288&type=2#PressStart2P-Regular SDF');
 }
 
 .button:hover {
-    width: 35%;
+    width: 40%;
+    transition-property: width;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
 }
 
 .PS2P {
     -unity-font: url('project://database/Assets/Sprites/PressStart2P-Regular.ttf?fileID=12800000&guid=60b71b71015510647b691043e6ec9cc9&type=3#PressStart2P-Regular');
     -unity-font-definition: url('project://database/Assets/Sprites/PressStart2P-Regular%20SDF.asset?fileID=11400000&guid=eba36e1c2d08df942b4ce70fb72d9288&type=2#PressStart2P-Regular SDF');
+}
+
+.btnPause {
+    width: 50%;
+    transition-property: width;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+
+.btnPause:hover {
+    width: 60%;
 }

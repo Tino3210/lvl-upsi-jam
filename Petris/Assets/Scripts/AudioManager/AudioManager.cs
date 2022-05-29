@@ -13,6 +13,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip breakPieces;
 
     public AudioClip petrominos;
+    public AudioClip heart;
+    public AudioClip gameOver;
+
+    public AudioClip countDown;
 
     public AudioClip music1;
     public AudioClip music2;
@@ -25,8 +29,6 @@ public class AudioManager : MonoBehaviour
     public float volumeMusic;
     [Range(0, 1)]
     public float volumeEffect;
-
-    public bool isInterface;
 
     private AudioSource audioSource;
 
@@ -93,21 +95,21 @@ public class AudioManager : MonoBehaviour
 
     public void PlayStart()
     {
-        audioSource.volume = volumeMusic * volumeMain * 0.5f;
+        ChangeMusicVolume(0.3f);
         AudioSource.PlayClipAtPoint(start, Camera.main.transform.position, volumeInterface * volumeMain);
         StartCoroutine(ResetSongCoroutine());
     }
 
     public void PlayOption()
     {
-        audioSource.volume = volumeMusic * volumeMain * 0.5f;
+        ChangeMusicVolume(0.3f);
         AudioSource.PlayClipAtPoint(option, Camera.main.transform.position, volumeInterface * volumeMain);
         StartCoroutine(ResetSongCoroutine());
     }
 
     public void PlayExit()
     {
-        audioSource.volume = volumeMusic * volumeMain * 0.1f;
+        ChangeMusicVolume(0.1f);
         AudioSource.PlayClipAtPoint(exit, Camera.main.transform.position, volumeInterface * volumeMain);
     }
 
@@ -129,6 +131,21 @@ public class AudioManager : MonoBehaviour
     public void PlayPetrominos()
     {
         AudioSource.PlayClipAtPoint(petrominos, Camera.main.transform.position, volumeEffect * volumeMain);
+    }
+
+    public void PlayHeart()
+    {
+        AudioSource.PlayClipAtPoint(heart, Camera.main.transform.position, volumeEffect * volumeMain);
+    }
+
+    public void PlayGameOver()
+    {
+        AudioSource.PlayClipAtPoint(gameOver, Camera.main.transform.position, volumeEffect * volumeMain);
+    }
+
+    public void PlayCountDown()
+    {
+        AudioSource.PlayClipAtPoint(countDown, Camera.main.transform.position, volumeEffect * volumeMain);
     }
 
     private IEnumerator ResetSongCoroutine()

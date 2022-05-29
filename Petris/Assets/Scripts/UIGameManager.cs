@@ -16,9 +16,12 @@ public class UIGameManager : VisualElement
     Label scoreInGame;
     Label scoreEnd;
 
+    SliderInt sliderMainVolume;
+    SliderInt sliderInteface;
+    SliderInt sliderMusic;
+    SliderInt sliderEffect;
 
     IMGUIContainer[] hearts;
-    Sprite emptyHeart;
 
     public new class UxmlFactory : UxmlFactory<UIGameManager, UxmlTraits> { }
 
@@ -46,6 +49,34 @@ public class UIGameManager : VisualElement
         gameScreen = this.Q("UIGame");
         resumeScreen = this.Q("UIPause");
 
+        sliderMainVolume = optionScreen.Q<SliderInt>("mainVolume");
+        sliderInteface = optionScreen.Q<SliderInt>("interfaceSound");
+        sliderMusic = optionScreen.Q<SliderInt>("musicVolume");
+        sliderEffect = optionScreen.Q<SliderInt>("effectVolume");
+
+        if (sliderMainVolume != null)
+        {
+            sliderMainVolume.RegisterValueChangedCallback(ChangeMainVolume);
+            sliderMainVolume.value = (int)(AudioManager.Instance.volumeMain * 100);
+        }
+
+        if (sliderInteface != null)
+        {
+            sliderInteface.RegisterValueChangedCallback(ChangeInterfaceVolume);
+            sliderInteface.value = (int)(AudioManager.Instance.volumeInterface * 100);
+        }
+        if (sliderMusic != null)
+        {
+            sliderMusic.RegisterValueChangedCallback(ChangeMusicVolume);
+            sliderMusic.value = (int)(AudioManager.Instance.volumeMusic * 100);
+        }
+
+        if (sliderEffect != null)
+        {
+            sliderEffect.RegisterValueChangedCallback(ChangeEffectVolume);
+            sliderEffect.value = (int)(AudioManager.Instance.volumeEffect * 100);
+        }
+
         time = gameScreen?.Q("time") as Label;
         scoreInGame = gameScreen?.Q("score") as Label;
         scoreEnd = scoreScreen?.Q("score") as Label;
@@ -54,8 +85,6 @@ public class UIGameManager : VisualElement
         {
             hearts[i] = gameScreen?.Q("heart" + i) as IMGUIContainer;
         }
-
-        emptyHeart = Resources.Load<Sprite>("Assets/Resources/Sprites/sprite_heart_1.png");
 
         resumeScreen?.Q("resume").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Game));
         resumeScreen?.Q("option").RegisterCallback<ClickEvent>(evt => ShowOptionScreen());
@@ -68,6 +97,26 @@ public class UIGameManager : VisualElement
 
         ShowGameScreen();
     }
+    private void ChangeMainVolume(ChangeEvent<int> evt)
+    {
+        AudioManager.Instance.volumeMain = evt.newValue / 100f;
+    }
+
+    private void ChangeInterfaceVolume(ChangeEvent<int> evt)
+    {
+        AudioManager.Instance.volumeInterface = evt.newValue / 100f;
+    }
+
+    private void ChangeMusicVolume(ChangeEvent<int> evt)
+    {
+        AudioManager.Instance.volumeMusic = evt.newValue / 100f;
+        AudioManager.Instance.ChangeMusicVolume();
+    }
+
+    private void ChangeEffectVolume(ChangeEvent<int> evt)
+    {
+        AudioManager.Instance.volumeEffect = evt.newValue / 100f;
+    }
 
     public void UpdatedTime(object sender, EventArgs evt)
     {
@@ -76,7 +125,7 @@ public class UIGameManager : VisualElement
 
     public void UpdatedScore(object sender, EventArgs evt)
     {
-        scoreInGame.text = "Score : " + ScoreManager.Instance.Score;
+        scoreInGame.text = "Score\n" + ScoreManager.Instance.Score;
         scoreEnd.text = ScoreManager.Instance.Score + " points";
 
     }

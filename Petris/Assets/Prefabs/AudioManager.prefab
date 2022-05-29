@@ -52,13 +52,15 @@ MonoBehaviour:
   landPieces: {fileID: 8300000, guid: 1f0a6a535fb28cc40a66021c9ff0fa6c, type: 3}
   breakPieces: {fileID: 8300000, guid: ada2b70aa2774344888e91f73c9102e6, type: 3}
   petrominos: {fileID: 8300000, guid: cdc86a94613974f4095c8f5174af6c46, type: 3}
-  music1: {fileID: 8300000, guid: 0d556f8275b7b2b40aec8100a6243dd8, type: 3}
+  heart: {fileID: 8300000, guid: e1e7bdf1b7926be47a4fe5e9d44f5bfb, type: 3}
+  gameOver: {fileID: 8300000, guid: b5586fa93ce33154b85bbd81a97e315a, type: 3}
+  countDown: {fileID: 8300000, guid: 0cf21f7bea4dabe4189eb45d2c43df2b, type: 3}
+  music1: {fileID: 8300000, guid: b846a93eb48dbd842ad03ab88b47de98, type: 3}
   music2: {fileID: 8300000, guid: fc7d6d5c23a97ef498fb0b2636235d68, type: 3}
   volumeMain: 1
   volumeInterface: 1
   volumeMusic: 1
   volumeEffect: 1
-  isInterface: 0
 --- !u!82 &1007311197417916726
 AudioSource:
   m_ObjectHideFlags: 0

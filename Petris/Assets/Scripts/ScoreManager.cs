@@ -65,6 +65,7 @@ public class ScoreManager : MonoBehaviour
     public void LoseLife()
     {
         Life -= 1;
+        AudioManager.Instance.PlayHeart();
         this.OnLifeChanged(new EventArgs());
     }
 

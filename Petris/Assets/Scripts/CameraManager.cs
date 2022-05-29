@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
     public void RotateCamera(){
         if(!isRotate)
         {            
-            StartCoroutine( Rotate( new Vector3(0, 0, 90), 1 ) );                      
+            StartCoroutine( Rotate( new Vector3(0, 0, -90), 1 ) );                      
         }
     }    
 

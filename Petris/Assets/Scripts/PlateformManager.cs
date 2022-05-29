@@ -7,7 +7,6 @@ public class PlateformManager : MonoBehaviour
     [SerializeField]
     private int sizeArray = 30;
     private Dictionary<Vector2, GameObject> pieces;
-    public int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +48,7 @@ public class PlateformManager : MonoBehaviour
     {
         Destroy(pieces[piecePosition]);
         pieces.Remove(piecePosition);
-        score += 1;
+        ScoreManager.Instance.AddScore(2);
     }
 
     // Retire une pi�ce si elle existe
@@ -74,7 +73,7 @@ public class PlateformManager : MonoBehaviour
             if (pieces.ContainsKey(newPos))
             {
                 Destroy(pieces[newPos]);
-                score += 1;
+                ScoreManager.Instance.AddScore(1);
                 pieces.Remove(newPos);
             }
             piece.transform.position = newPos;
@@ -174,8 +173,8 @@ public class PlateformManager : MonoBehaviour
                     UnsafeBreakPiece(new Vector2(-layerIndex, -layerIndex + j));
                 }            
                 LayerBreaker(layer);
-                layer = maxLayer; // Recheck until we no more perfect squares left
+                layer = maxLayer; // Recheck until we no more perfect squares 
             }         
         }
-    }    
+    }
 }

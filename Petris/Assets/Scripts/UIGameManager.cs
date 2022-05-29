@@ -48,7 +48,7 @@ public class UIGameManager : VisualElement
 
         time = gameScreen?.Q("time") as Label;
         scoreInGame = gameScreen?.Q("score") as Label;
-        scoreEnd = scoreScreen.Q("score") as Label;
+        scoreEnd = scoreScreen?.Q("score") as Label;
 
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -82,7 +82,6 @@ public class UIGameManager : VisualElement
     }
     public void UpdateLife(object sender, EventArgs evt)
     {
-        Debug.Log(emptyHeart);
         hearts[ScoreManager.Instance.Life].style.backgroundImage = new StyleBackground(ScoreManager.Instance.emptyHeart);
     }    
 

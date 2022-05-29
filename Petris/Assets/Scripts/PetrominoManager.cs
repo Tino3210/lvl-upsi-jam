@@ -35,7 +35,7 @@ public class PetrominoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isMoving){
+        if(isMoving && GameManager.instance.Sates == GameState.Pause)
 
             float rotation = Input.GetKeyDown(KeyCode.Q) ? 90f : 0f;
             rotation += Input.GetKeyDown(KeyCode.E) ? -90f : 0f;

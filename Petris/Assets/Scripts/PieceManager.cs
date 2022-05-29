@@ -51,14 +51,10 @@ public class PieceManager : MonoBehaviour
             parent.GetComponent<PetrominoManager>().isMoving = false;            
             
             GameObject.Find("Plateform").GetComponent<PlateformManager>().AddPetromino(parent);
-
+            Debug.Log("Coroutine");
             StartCoroutine(Spawn());
         }
     }
 
-    public IEnumerator Spawn(){
-        GameObject.Find("Main Camera").GetComponent<CameraManager>().RotateCamera();
-        yield return new WaitForSeconds(1.5f);                
-        GameObject.Find("SpawnManager").GetComponent<SpawnManager>().SpawnPetronimo();
-    }
+    
 }

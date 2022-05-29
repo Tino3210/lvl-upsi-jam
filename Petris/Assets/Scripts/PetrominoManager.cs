@@ -126,7 +126,7 @@ public class PetrominoManager : MonoBehaviour
 
 
             if(transform.position.x > 23 || transform.position.x < -23 || transform.position.y > 23 || transform.position.y < -23){
-                Debug.Log("-1 PV");
+                ScoreManager.Instance.LoseLife();
                 Destroy(gameObject);
                 StartCoroutine(Spawn());
             }            

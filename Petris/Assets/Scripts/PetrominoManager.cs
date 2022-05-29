@@ -128,14 +128,9 @@ public class PetrominoManager : MonoBehaviour
                     break;
             }
 
-            
-            
-
-            Debug.Log("Control orientation: " + controlOrientation);
+            /*Debug.Log("Control orientation: " + controlOrientation);
             Debug.Log("Camera orientation: " + cameraZ);
-            Debug.Log("Petromino direction: " + direction);
-
-
+            Debug.Log("Petromino direction: " + direction);*/
 
             switch (direction)
             {
@@ -174,15 +169,9 @@ public class PetrominoManager : MonoBehaviour
 
             if(transform.position.x > 23 || transform.position.x < -23 || transform.position.y > 23 || transform.position.y < -23){
                 ScoreManager.Instance.LoseLife();
-                Destroy(gameObject);
-                StartCoroutine(Spawn());
+                GameObject.Find("Main Camera").GetComponent<CameraManager>().SpawnAndRotateCamera();
+                Destroy(gameObject);                
             }            
         }
-    }
-
-    public IEnumerator Spawn(){
-        GameObject.Find("Main Camera").GetComponent<CameraManager>().RotateCamera();
-        yield return new WaitForSeconds(1.5f);                
-        GameObject.Find("SpawnManager").GetComponent<SpawnManager>().SpawnPetronimo();
     }
 }

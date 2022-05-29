@@ -51,8 +51,7 @@ public class PieceManager : MonoBehaviour
             parent.GetComponent<PetrominoManager>().isMoving = false;            
             
             GameObject.Find("Plateform").GetComponent<PlateformManager>().AddPetromino(parent);
-            Debug.Log("Coroutine");
-            StartCoroutine(Spawn());
+            GameObject.Find("Main Camera").GetComponent<CameraManager>().SpawnAndRotateCamera();
         }
     }
 

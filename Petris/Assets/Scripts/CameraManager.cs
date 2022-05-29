@@ -38,12 +38,14 @@ public class CameraManager : MonoBehaviour
         isRotate = false;
     }
 
+    public void SpawnAndRotateCamera(){
+        StartCoroutine(Spawn());
+    }
+
     public IEnumerator Spawn()
     {
-        GameObject.Find("Main Camera").GetComponent<CameraManager>().RotateCamera();
-        Debug.Log("Camera");
-        yield return new WaitForSeconds(1.5f);
-        Debug.Log("Spawn");
+        GameObject.Find("Main Camera").GetComponent<CameraManager>().RotateCamera();        
+        yield return new WaitForSeconds(1.5f);        
         GameObject.Find("SpawnManager").GetComponent<SpawnManager>().SpawnPetronimo();
     }
 }

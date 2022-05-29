@@ -183,8 +183,12 @@ public class PlateformManager : MonoBehaviour
                     UnsafeBreakPiece(new Vector2(-layerIndex, -layerIndex + j));
                 }            
                 LayerBreaker(layer);
-                layer = maxLayer; // Recheck until we no more perfect squares 
-            }         
+                layer = maxLayer; // Recheck until we no more perfect squares                 
+                AudioManager.Instance.PlayBreakPieces();
+                AudioManager.Instance.PlayPetrominos();
+            }else{
+                AudioManager.Instance.PlayLandPieces();
+            }      
         }
     }
 }

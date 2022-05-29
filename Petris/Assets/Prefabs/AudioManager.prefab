@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38869975f72672c44a71a01bd14a3fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start: {fileID: 8300000, guid: 6e483f6c9adc6794ab558db33357335d, type: 3}
+  petris: {fileID: 8300000, guid: 3de91be887310b341bb1471775425239, type: 3}
+  breakPieces: {fileID: 8300000, guid: ada2b70aa2774344888e91f73c9102e6, type: 3}
+  volumeMain: 1
+  volumeInterface: 1
+  volumeMusic: 1
+  volumeEffect: 1

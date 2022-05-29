@@ -4,9 +4,11 @@
         <ui:VisualElement name="left" style="width: 25%;" />
         <ui:VisualElement name="center" style="width: 50%; align-items: center;">
             <ui:Label text="Volume" display-tooltip-when-elided="true" name="Volume" class="PS2P" style="width: auto; font-size: 24px; color: rgb(169, 207, 212);" />
-            <ui:SliderInt picking-mode="Ignore" label="Interface sound" value="42" high-value="100" name="interfaceSound" class="PS2P" style="width: 100%; -unity-font-style: normal; flex-direction: column; height: 40px; color: rgb(181, 223, 228);" />
-            <ui:Button text="BACK" display-tooltip-when-elided="true" name="back" class="button PS2P" style="position: absolute; bottom: 0; color: rgb(200, 145, 62); background-color: rgb(232, 208, 170); font-size: 20px; margin-bottom: 20px;" />
             <ui:SliderInt picking-mode="Ignore" label="Main volume" value="42" name="mainVolume" high-value="100" class="PS2P" style="width: 100%; -unity-font-style: normal; height: 40px; flex-direction: column; color: rgb(181, 223, 228);" />
+            <ui:SliderInt picking-mode="Ignore" label="Interface sound" value="42" high-value="100" name="interfaceSound" class="PS2P" style="width: 100%; -unity-font-style: normal; flex-direction: column; height: 40px; color: rgb(181, 223, 228);" />
+            <ui:SliderInt picking-mode="Ignore" label="Music volume" value="42" name="musicVolume" high-value="100" class="PS2P" style="width: 100%; -unity-font-style: normal; height: 40px; flex-direction: column; color: rgb(181, 223, 228);" />
+            <ui:SliderInt picking-mode="Ignore" label="Effect volume" value="42" name="effectVolume" high-value="100" class="PS2P" style="width: 100%; -unity-font-style: normal; height: 40px; flex-direction: column; color: rgb(181, 223, 228);" />
+            <ui:Button text="BACK" display-tooltip-when-elided="true" name="back" class="button PS2P" style="position: absolute; bottom: 0; color: rgb(200, 145, 62); background-color: rgb(232, 208, 170); font-size: 20px; margin-bottom: 20px;" />
         </ui:VisualElement>
         <ui:VisualElement name="right" value="100" label="Volume Principale" style="width: 25%;" />
     </ui:VisualElement>

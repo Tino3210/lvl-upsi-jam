@@ -90,8 +90,18 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartGameCoroutine()
     {
         yield return new WaitForSeconds(3f);
-        UpdateGameState(GameState.LaunchGame);
     }
+
+    public void ExitGame()
+    {
+        StartCoroutine(ExitGameCoroutine());
+    }
+    private IEnumerator ExitGameCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        Application.Quit();
+    }
+
 
     public event EventHandler Paused;
 

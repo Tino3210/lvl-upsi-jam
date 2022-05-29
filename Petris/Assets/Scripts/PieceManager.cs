@@ -52,7 +52,6 @@ public class PieceManager : MonoBehaviour
             
             GameObject.Find("Plateform").GetComponent<PlateformManager>().AddPetromino(parent);
             Debug.Log("Coroutine");
-            StartCoroutine(Spawn());
         }
     }
 

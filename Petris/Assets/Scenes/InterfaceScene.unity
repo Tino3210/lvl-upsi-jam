@@ -306,19 +306,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 766132936079227305, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
-      propertyPath: start
-      value: 
-      objectReference: {fileID: 8300000, guid: 6e483f6c9adc6794ab558db33357335d, type: 3}
-    - target: {fileID: 766132936079227305, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
-      propertyPath: petris
-      value: 
-      objectReference: {fileID: 8300000, guid: 3de91be887310b341bb1471775425239, type: 3}
-    - target: {fileID: 766132936079227305, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
       propertyPath: volumeMain
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 766132936079227305, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
-      propertyPath: volumeInterface
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5655385170308461044, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
@@ -369,7 +357,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2129567572026513197, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cba10752f3db2e04898b9d4ddcd0742f, type: 3}
 --- !u!1001 &5235951016753640277
 PrefabInstance:

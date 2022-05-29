@@ -13,6 +13,8 @@ public class UIInterfaceManager : VisualElement
 
     SliderInt sliderMainVolume;
     SliderInt sliderInteface;
+    SliderInt sliderMusic;
+    SliderInt sliderEffect;
 
     private bool alreadyStart;
 
@@ -33,6 +35,8 @@ public class UIInterfaceManager : VisualElement
 
         sliderMainVolume = optionScreen.Q<SliderInt>("mainVolume");
         sliderInteface = optionScreen.Q<SliderInt>("interfaceSound");
+        sliderMusic = optionScreen.Q<SliderInt>("musicVolume");
+        sliderEffect = optionScreen.Q<SliderInt>("effectVolume");
 
         if (sliderMainVolume != null)
         {
@@ -45,10 +49,22 @@ public class UIInterfaceManager : VisualElement
             sliderInteface.RegisterValueChangedCallback(ChangeInterfaceVolume);
             sliderInteface.value = (int)(AudioManager.Instance.volumeInterface * 100);
         }
+        if (sliderMusic != null)
+        {
+            sliderMusic.RegisterValueChangedCallback(ChangeMainVolume);
+            sliderMusic.value = (int)(AudioManager.Instance.volumeMusic * 100);
+        }
+
+        if (sliderEffect != null)
+        {
+            sliderEffect.RegisterValueChangedCallback(ChangeInterfaceVolume);
+            sliderEffect.value = (int)(AudioManager.Instance.volumeEffect * 100);
+        }
 
         mainScreen?.Q("start")?.RegisterCallback<ClickEvent>(ev => StartGame());
         mainScreen?.Q("title")?.RegisterCallback<ClickEvent>(ev => AudioManager.Instance.PlayPetris());
-        
+        mainScreen?.Q("exit")?.RegisterCallback<ClickEvent>(ev => ExitGame());
+
         mainScreen?.Q("option")?.RegisterCallback<ClickEvent>(ev => ShowOptionScreen());
         optionScreen?.Q("back")?.RegisterCallback<ClickEvent>(ev => ShowMainScreen());
     }
@@ -63,12 +79,6 @@ public class UIInterfaceManager : VisualElement
         AudioManager.Instance.volumeInterface = evt.newValue / 100f;
     }
 
-    public IEnumerator DoSomething()
-    {
-        yield return new WaitForSeconds(5);
-        Debug.Log("Done");
-    }
-
     public void StartGame()
     {
         //Play start sound
@@ -79,6 +89,19 @@ public class UIInterfaceManager : VisualElement
             AudioManager.Instance.PlayStart();
 
             GameManager.Instance.StartGame();
+        }
+    }
+
+    public void ExitGame()
+    {
+        //Play start sound
+
+        if (!alreadyStart)
+        {
+            alreadyStart = true;
+            AudioManager.Instance.PlayExit();
+
+            GameManager.Instance.ExitGame();
         }
     }
 

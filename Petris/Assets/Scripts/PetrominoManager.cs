@@ -167,7 +167,7 @@ public class PetrominoManager : MonoBehaviour
 
 
 
-            if(transform.position.x > 23 || transform.position.x < -23 || transform.position.y > 23 || transform.position.y < -23){
+            if(transform.position.x > 16 || transform.position.x < -16 || transform.position.y > 16 || transform.position.y < -16){
                 ScoreManager.Instance.LoseLife();
                 GameObject.Find("Main Camera").GetComponent<CameraManager>().SpawnAndRotateCamera();
                 Destroy(gameObject);                

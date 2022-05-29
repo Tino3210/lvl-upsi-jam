@@ -74,6 +74,7 @@ public class PlateformManager : MonoBehaviour
             if (pieces.ContainsKey(newPos))
             {
                 Destroy(pieces[newPos]);
+                score += 1;
                 pieces.Remove(newPos);
             }
             piece.transform.position = newPos;

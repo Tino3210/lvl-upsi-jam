@@ -36,6 +36,7 @@ public class SpawnManager : MonoBehaviour
         PetrominoManager.Direction direction;
 
         switch(Random.Range(0, 4)){
+        // switch(0){
             case 0:
                 petromino.transform.position = spawnNorth;
                 direction = PetrominoManager.Direction.South;

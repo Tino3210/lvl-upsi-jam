@@ -39,7 +39,16 @@ public class PlateformManager : MonoBehaviour
 
         Vector2 roundedPos = new Vector2(Mathf.Round(piece.transform.position.x*2)/2, Mathf.Round(piece.transform.position.y*2)/2);
         piece.GetComponent<PieceManager>().ResetCollider();
-        pieces.Add(roundedPos, piece); // C'est ici qu'on a des erreurs quand on a des pi�ces qui sont en overlap
+
+        if(roundedPos.x > sizeArray/2 || roundedPos.y > sizeArray/2 || roundedPos.x < -sizeArray/2 || roundedPos.y < -sizeArray/2){
+            ScoreManager.Instance.LoseLife();
+            Destroy(piece);
+            return;
+        }        
+
+        if(!pieces.ContainsKey(roundedPos)){
+            pieces.Add(roundedPos, piece);
+        }        
     }
     
     // Fonction pour ajouter les poinnts ?

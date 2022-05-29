@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   piece: {fileID: 915562464004555402, guid: d74e1c3c69901ee459a2b4afba607d76, type: 3}
-  spawnNorth: {x: -0.5, y: 22.5}
-  spawnEast: {x: 22.5, y: 0.5}
-  spawnSouth: {x: -0.5, y: -22.5}
-  spawnWest: {x: -22.5, y: 0.5}
+  spawnNorth: {x: -0.5, y: 20.5}
+  spawnEast: {x: 20.5, y: 0.5}
+  spawnSouth: {x: -0.5, y: -20.5}
+  spawnWest: {x: -20.5, y: 0.5}
   sprites:
   - {fileID: -2080368484, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
   - {fileID: 898481381, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
@@ -57,3 +57,4 @@ MonoBehaviour:
   - {fileID: -893918274, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
   - {fileID: 1796469257, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
   - {fileID: 2063254543, guid: c6d04469f310cdb49bc722610a8465b3, type: 3}
+  isRandomSapwn: 0

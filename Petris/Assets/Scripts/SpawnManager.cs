@@ -16,6 +16,10 @@ public class SpawnManager : MonoBehaviour
     private Vector2 spawnWest;
     [SerializeField]
     private Sprite[] sprites;
+    [SerializeField]
+    private bool isRandomSapwn = false;
+
+    private int orientationSequence = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -33,30 +37,58 @@ public class SpawnManager : MonoBehaviour
         GameObject petromino = new GameObject();
         petromino.name = "Petromino";        
         petromino.transform.SetParent(gameObject.transform);
-        PetrominoManager.Direction direction;
+        PetrominoManager.Direction direction;       
 
-        switch(Random.Range(0, 4)){
-        // switch(0){
-            case 0:
-                petromino.transform.position = spawnNorth;
-                direction = PetrominoManager.Direction.South;
-            break;            
-            case 1:
-                petromino.transform.position = spawnEast;
-                direction = PetrominoManager.Direction.West;
-            break;
-            case 2:
-                petromino.transform.position = spawnSouth;
-                direction = PetrominoManager.Direction.North;
-            break;
-            case 3:
-                petromino.transform.position = spawnWest;
-                direction = PetrominoManager.Direction.East;
-            break;
-            default:
-                petromino.transform.position = spawnNorth;
-                direction = PetrominoManager.Direction.South;
-            break;
+
+        // TODO : Optimise
+        if(!isRandomSapwn){
+            switch(orientationSequence){
+            // switch(0){
+                case 0:
+                    petromino.transform.position = spawnSouth;
+                    direction = PetrominoManager.Direction.North;
+                break;
+                case 1:
+                    petromino.transform.position = spawnWest;
+                    direction = PetrominoManager.Direction.East;
+                break;
+                case 2:
+                    petromino.transform.position = spawnNorth;
+                    direction = PetrominoManager.Direction.South;
+                break;
+                case 3:
+                    petromino.transform.position = spawnEast;
+                    direction = PetrominoManager.Direction.West;
+                break;
+                default:
+                    petromino.transform.position = spawnNorth;
+                    direction = PetrominoManager.Direction.South;
+                break;
+            }
+            orientationSequence = (orientationSequence + 1) % 4;
+        }else{
+            switch(Random.Range(0, 4)){
+                case 0:
+                    petromino.transform.position = spawnNorth;
+                    direction = PetrominoManager.Direction.South;
+                break;            
+                case 1:
+                    petromino.transform.position = spawnEast;
+                    direction = PetrominoManager.Direction.West;
+                break;
+                case 2:
+                    petromino.transform.position = spawnSouth;
+                    direction = PetrominoManager.Direction.North;
+                break;
+                case 3:
+                    petromino.transform.position = spawnWest;
+                    direction = PetrominoManager.Direction.East;
+                break;
+                default:
+                    petromino.transform.position = spawnNorth;
+                    direction = PetrominoManager.Direction.South;
+                break;
+            }
         }
 
         petromino.AddComponent<PetrominoManager>();

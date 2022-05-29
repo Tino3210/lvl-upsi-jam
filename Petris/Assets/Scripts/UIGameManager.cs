@@ -82,7 +82,10 @@ public class UIGameManager : VisualElement
     }
     public void UpdateLife(object sender, EventArgs evt)
     {
-        hearts[ScoreManager.Instance.Life].style.backgroundImage = new StyleBackground(ScoreManager.Instance.emptyHeart);
+        if (ScoreManager.Instance.Life >= 0)
+        {
+            hearts[ScoreManager.Instance.Life].style.backgroundImage = new StyleBackground(ScoreManager.Instance.emptyHeart);
+        }
     }    
 
     public void ShowResumeScreen(object sender, EventArgs evt)

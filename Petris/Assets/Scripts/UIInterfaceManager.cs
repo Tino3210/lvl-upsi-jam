@@ -51,13 +51,13 @@ public class UIInterfaceManager : VisualElement
         }
         if (sliderMusic != null)
         {
-            sliderMusic.RegisterValueChangedCallback(ChangeMainVolume);
+            sliderMusic.RegisterValueChangedCallback(ChangeMusicVolume);
             sliderMusic.value = (int)(AudioManager.Instance.volumeMusic * 100);
         }
 
         if (sliderEffect != null)
         {
-            sliderEffect.RegisterValueChangedCallback(ChangeInterfaceVolume);
+            sliderEffect.RegisterValueChangedCallback(ChangeEffectVolume);
             sliderEffect.value = (int)(AudioManager.Instance.volumeEffect * 100);
         }
 
@@ -79,6 +79,17 @@ public class UIInterfaceManager : VisualElement
         AudioManager.Instance.volumeInterface = evt.newValue / 100f;
     }
 
+    private void ChangeMusicVolume(ChangeEvent<int> evt)
+    {
+        AudioManager.Instance.volumeMusic = evt.newValue / 100f;
+        AudioManager.Instance.ChangeMusicVolume();
+    }
+
+    private void ChangeEffectVolume(ChangeEvent<int> evt)
+    {
+        AudioManager.Instance.volumeEffect = evt.newValue / 100f;
+    }
+
     public void StartGame()
     {
         //Play start sound
@@ -95,18 +106,14 @@ public class UIInterfaceManager : VisualElement
     public void ExitGame()
     {
         //Play start sound
+        AudioManager.Instance.PlayExit();
 
-        if (!alreadyStart)
-        {
-            alreadyStart = true;
-            AudioManager.Instance.PlayExit();
-
-            GameManager.Instance.ExitGame();
-        }
+        GameManager.Instance.ExitGame();
     }
 
     public void ShowOptionScreen()
     {
+        AudioManager.Instance.PlayOption();
         if (optionScreen != null && mainScreen != null)
         {
             mainScreen.style.display = DisplayStyle.None;

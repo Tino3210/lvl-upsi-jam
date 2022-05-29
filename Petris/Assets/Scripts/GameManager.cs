@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
                 UpdateGameState(GameState.Game);
                 break;
             case GameState.Game:
+                AudioManager.Instance.ChangeMusic1To2();
                 this.OnGame(new EventArgs());
                 break;
             case GameState.End:
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartGameCoroutine()
     {
         yield return new WaitForSeconds(3f);
+        GameManager.Instance.UpdateGameState(GameState.LaunchGame);
     }
 
     public void ExitGame()

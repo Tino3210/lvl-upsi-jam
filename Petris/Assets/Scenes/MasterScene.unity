@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2672257306173654738, guid: 4d8e6b746fcf23649a1e563a85051f66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3731418072950022712, guid: 4d8e6b746fcf23649a1e563a85051f66, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -158,13 +162,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3731418072950022713, guid: 4d8e6b746fcf23649a1e563a85051f66, type: 3}
-      propertyPath: orthographic size
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 3731418072950022715, guid: 4d8e6b746fcf23649a1e563a85051f66, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258340393811345736, guid: 4d8e6b746fcf23649a1e563a85051f66, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d8e6b746fcf23649a1e563a85051f66, type: 3}
@@ -469,10 +473,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5114577160856906777, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114577160856906777, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -503,10 +503,6 @@ PrefabInstance:
     - target: {fileID: 5114577160856906790, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}
       propertyPath: m_Name
       value: Plateform
-      objectReference: {fileID: 0}
-    - target: {fileID: 5114577160856906790, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}
-      propertyPath: m_TagString
-      value: plateform
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af1604e80000c64aaeaf5e0961e574a, type: 3}

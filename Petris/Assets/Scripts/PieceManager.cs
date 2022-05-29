@@ -55,6 +55,4 @@ public class PieceManager : MonoBehaviour
             GameObject.Find("Main Camera").GetComponent<CameraManager>().SpawnAndRotateCamera();
         }
     }
-
-    
 }

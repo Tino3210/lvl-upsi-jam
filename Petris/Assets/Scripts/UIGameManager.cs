@@ -91,7 +91,7 @@ public class UIGameManager : VisualElement
         resumeScreen?.Q("quitToMenu").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Menu));
         resumeScreen?.Q("quitToDesktop").RegisterCallback<ClickEvent>(evt => Application.Quit());
 
-        scoreScreen?.Q("menu").RegisterCallback<ClickEvent>(evt => GameManager.Instance.UpdateGameState(GameState.Menu));
+        scoreScreen?.Q("menu").RegisterCallback<ClickEvent>(evt => GoBackToMenu());
 
         optionScreen?.Q("back")?.RegisterCallback<ClickEvent>(ev => ShowResumeScreen());
 
@@ -149,6 +149,12 @@ public class UIGameManager : VisualElement
     public void ShowGameScreen(object sender, EventArgs evt)
     {
         ShowGameScreen();
+    }
+    
+    public void GoBackToMenu()
+    {
+        GameManager.Instance.UpdateGameState(GameState.Menu);
+        AudioManager.Instance.ChangeMusic2To1();
     }
 
     public void ShowOptionScreen()

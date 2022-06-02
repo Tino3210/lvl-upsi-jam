@@ -19,7 +19,7 @@ public class PetrominoManager : MonoBehaviour
 
 
     public Direction direction;
-    public float moveSpeed = 2f;
+    public float moveSpeed = 3f;
     public float moveSpeedFast = 10f;
     public bool isMoving = true;
     public bool isTrigger = false;
@@ -35,7 +35,8 @@ public class PetrominoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isMoving && GameManager.Instance.State != GameState.Pause){
+        if(isMoving && GameManager.Instance.State != GameState.Pause && GameManager.Instance.State != GameState.End)
+        {
 
             float rotation = Input.GetKeyDown(KeyCode.Q) ? 90f : 0f;
             rotation += Input.GetKeyDown(KeyCode.E) ? -90f : 0f;
@@ -167,7 +168,7 @@ public class PetrominoManager : MonoBehaviour
 
 
 
-            if(transform.position.x > 16 || transform.position.x < -16 || transform.position.y > 16 || transform.position.y < -16){
+            if(transform.position.x > 21 || transform.position.x < -21 || transform.position.y > 21 || transform.position.y < -21){
                 ScoreManager.Instance.LoseLife();
                 GameObject.Find("Main Camera").GetComponent<CameraManager>().SpawnAndRotateCamera();
                 Destroy(gameObject);                

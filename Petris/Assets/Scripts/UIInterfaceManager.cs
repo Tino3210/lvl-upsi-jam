@@ -63,7 +63,7 @@ public class UIInterfaceManager : VisualElement
 
         mainScreen?.Q("start")?.RegisterCallback<ClickEvent>(ev => StartGame());
         mainScreen?.Q("title")?.RegisterCallback<ClickEvent>(ev => AudioManager.Instance.PlayPetris());
-        mainScreen?.Q("exit")?.RegisterCallback<ClickEvent>(ev => ExitGame());
+        mainScreen?.Q("quit")?.RegisterCallback<ClickEvent>(ev => ExitGame());
 
         mainScreen?.Q("option")?.RegisterCallback<ClickEvent>(ev => ShowOptionScreen());
         optionScreen?.Q("back")?.RegisterCallback<ClickEvent>(ev => ShowMainScreen());

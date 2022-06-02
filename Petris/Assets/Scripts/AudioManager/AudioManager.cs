@@ -130,7 +130,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPetrominos()
     {
+        ChangeMusicVolume(0.1f);
         AudioSource.PlayClipAtPoint(petrominos, Camera.main.transform.position, volumeEffect * volumeMain);
+        StartCoroutine(ResetSongCoroutine());
     }
 
     public void PlayHeart()

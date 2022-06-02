@@ -48,7 +48,9 @@ public class ScoreManager : MonoBehaviour
         }
         if(Life == 0)
         {
+            AudioManager.Instance.PlayGameOver();
             GameManager.Instance.UpdateGameState(GameState.End);
+            Life -= 1;
         }
         if (Input.GetKeyDown(KeyCode.O))
         {

@@ -4,7 +4,7 @@
         <ui:VisualElement name="left" style="width: 25%;" />
         <ui:VisualElement name="center" style="width: 50%; align-items: center;">
             <ui:Label text="You finished with" display-tooltip-when-elided="true" class="PS2P" style="font-size: 24px; margin-top: 15%;" />
-            <ui:Label text="1002 points" display-tooltip-when-elided="true" name="score" class="PS2P" style="font-size: 30px; margin-top: 10%;" />
+            <ui:Label text="0 points" display-tooltip-when-elided="true" name="score" class="PS2P" style="font-size: 30px; margin-top: 10%;" />
             <ui:VisualElement style="flex-direction: row; position: absolute; bottom: 0; margin-bottom: 5%;">
                 <ui:Button text="MENU" display-tooltip-when-elided="true" name="menu" class="PS2P" style="-unity-text-align: lower-center; background-color: rgb(234, 192, 249); color: rgb(206, 109, 241); font-size: 20px; margin-left: 4px;" />
             </ui:VisualElement>

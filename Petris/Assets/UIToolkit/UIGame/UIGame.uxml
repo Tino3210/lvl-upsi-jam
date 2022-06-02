@@ -14,7 +14,7 @@
         <ui:VisualElement name="center" style="width: 50%; align-items: flex-start;" />
         <ui:VisualElement name="right" style="width: 25%; align-items: auto; flex-direction: column;">
             <ui:VisualElement style="height: 50%; width: 100%; align-items: auto;">
-                <ui:Label text="Score&#10;12323" display-tooltip-when-elided="true" name="score" class="PS2P" style="font-size: 35%; -unity-text-align: middle-center; white-space: nowrap; -unity-paragraph-spacing: 60px;" />
+                <ui:Label text="Score&#10;0" display-tooltip-when-elided="true" name="score" class="PS2P" style="font-size: 35%; -unity-text-align: middle-center; white-space: nowrap; -unity-paragraph-spacing: 60px;" />
             </ui:VisualElement>
             <ui:VisualElement style="width: 100%; height: 50%; align-items: flex-end; justify-content: flex-end;">
                 <ui:VisualElement name="nextPetrinos" style="width: 75%; height: 75%;" />
